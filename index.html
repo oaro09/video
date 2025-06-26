@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>唠唠嗑</title>
+  <title>视频播放页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    video {
+      margin-top: 20px;
+      max-width: 100%;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-  <h1>请勿转发，验证码只可使用一次</h1>
-  <video controls width="600">
-    <source src="https://example.com/your-video.mp4" type="video/mp4" />
-    您的浏览器不支持视频播放。
+  <h1>观看视频：6月23日</h1>
+
+  <video controls width="800" preload="metadata">
+    <source src="https://outin-5fd4d548528f11f0b2f000163e292703.oss-cn-shanghai.aliyuncs.com/6%E6%9C%8823%E6%97%A5.mp4" type="video/mp4" />
+    您的浏览器不支持 video 标签。
   </video>
+
 </body>
 </html>
