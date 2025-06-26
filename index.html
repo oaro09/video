@@ -2,59 +2,43 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>6月23日视频播放</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 正确引入阿里云播放器 CSS -->
-  <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.13.0/skins/default/aliplayer-min.css" />
+  <title>Video.js + HLS 播放示例</title>
+  <link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
   <style>
     body {
-      background-color: #f4f4f4;
-      font-family: "Segoe UI", sans-serif;
+      background: #f4f4f4;
       text-align: center;
-      padding: 30px;
+      padding: 40px;
+      font-family: "Segoe UI", sans-serif;
     }
-    #player-con {
-      margin: 30px auto;
+    .video-container {
       max-width: 900px;
-      width: 100%;
-      height: 500px;
+      margin: auto;
     }
   </style>
 </head>
+<body>
+  <h2>视频播放：6月23日</h2>
+  <div class="video-container">
+    <video
+      id="my-video"
+      class="video-js vjs-default-skin"
+      controls
+      preload="auto"
+      width="100%"
+      height="480"
+      data-setup='{}'
+      controlsList="nodownload"
+      oncontextmenu="return false;"
+    >
+      <!-- 这里的src可以是mp4，也可以是m3u8 -->
+      <source src="https://outin-5fd4d548528f11f0b2f000163e292703.oss-cn-shanghai.aliyuncs.com/sv/477bae1f-197ac956af5/477bae1f-197ac956af5.mp4?Expires=1750951072&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=1UZyhZMALaB4ibGvUUFqQGxLIu4%3D" type="video/mp4" />
+      <!-- 如果你后续有m3u8链接，替换上一行为下面这行 -->
+      <!-- <source src="你的m3u8链接" type="application/x-mpegURL" /> -->
+      您的浏览器不支持视频播放。
+    </video>
+  </div>
 
-<body oncontextmenu="return false;">
-  <h1>观看视频：6月23日</h1>
-  <div id="player-con"></div>
-
-  <!-- ✅ 正确顺序：先加载 JS，再初始化 -->
-  <script src="https://g.alicdn.com/de/prismplayer/2.13.0/prism-min.js"></script>
-
-  <script>
-    // ✅ 等页面+JS都加载完再运行播放器
-    window.onload = function () {
-      new Aliplayer({
-        id: "player-con",
-        source: "https://outin-5fd4d548528f11f0b2f000163e292703.oss-cn-shanghai.aliyuncs.com/sv/477bae1f-197ac956af5/477bae1f-197ac956af5.mp4?Expires=1750951072&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=1UZyhZMALaB4ibGvUUFqQGxLIu4%3D",
-        width: "100%",
-        height: "100%",
-        autoplay: false,
-        showDownload: false,
-        skinLayout: [
-          { name: "bigPlayButton", align: "cc" },
-          { name: "H5Loading", align: "cc" },
-          { name: "errorDisplay", align: "cc" },
-          { name: "infoDisplay" },
-          {
-            name: "controlBar", align: "bl", children: [
-              { name: "playButton", align: "tl" },
-              { name: "progress", align: "tl" },
-              { name: "fullScreenButton", align: "tr" },
-              { name: "volume", align: "tr" }
-            ]
-          }
-        ]
-      });
-    };
-  </script>
+  <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
 </body>
 </html>
