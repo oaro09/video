@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>Video.js + HLS 播放示例</title>
+  <title>Video.js 自适应视频尺寸示例</title>
   <link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
   <style>
     body {
@@ -12,33 +12,50 @@
       font-family: "Segoe UI", sans-serif;
     }
     .video-container {
-      max-width: 900px;
       margin: auto;
     }
   </style>
 </head>
 <body>
-  <h2>视频播放：6月23日</h2>
-  <div class="video-container">
+  <h2>自适应视频尺寸播放</h2>
+  <div class="video-container" id="video-container">
     <video
       id="my-video"
       class="video-js vjs-default-skin"
       controls
       preload="auto"
-      width="100%"
-      height="480"
       data-setup='{}'
       controlsList="nodownload"
       oncontextmenu="return false;"
     >
-      <!-- 这里的src可以是mp4，也可以是m3u8 -->
       <source src="https://outin-5fd4d548528f11f0b2f000163e292703.oss-cn-shanghai.aliyuncs.com/sv/477bae1f-197ac956af5/477bae1f-197ac956af5.mp4?Expires=1750951072&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=1UZyhZMALaB4ibGvUUFqQGxLIu4%3D" type="video/mp4" />
-      <!-- 如果你后续有m3u8链接，替换上一行为下面这行 -->
-      <!-- <source src="你的m3u8链接" type="application/x-mpegURL" /> -->
       您的浏览器不支持视频播放。
     </video>
   </div>
 
   <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
+  <script>
+    var player = videojs('my-video');
+
+    player.ready(function() {
+      // 监听元数据加载完成，获得视频原始宽高
+      player.tech(true).on('loadedmetadata', function() {
+        var videoWidth = player.videoWidth();
+        var videoHeight = player.videoHeight();
+
+        // 限制最大宽度，避免太大
+        var maxWidth = 900;
+
+        var scale = Math.min(maxWidth / videoWidth, 1);
+
+        var newWidth = videoWidth * scale;
+        var newHeight = videoHeight * scale;
+
+        // 设置播放器尺寸
+        player.width(newWidth);
+        player.height(newHeight);
+      });
+    });
+  </script>
 </body>
 </html>
