@@ -63,7 +63,7 @@
   </div>
   <script src="https://player.polyv.net/resp/vod-player/latest/player.js"></script>
   <script>
-    // 获取 token 和密码
+    // 
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
     const pwd = params.get('pwd');
@@ -78,11 +78,11 @@
       } else if (usedToken === '1' || usedPwd === '1') {
         msgDiv.innerText = '本链接或密码已访问过，不能重复访问';
       } else {
-        // 标记为已访问
+        // 
         localStorage.setItem('video_token_used_' + token, '1');
         localStorage.setItem('video_pwd_used_' + pwd, '1');
         document.getElementById('video-area').style.display = '';
-        // 2. 这里的wrap和vid都用新的ID
+        // 
         polyvPlayer({
           'wrap':'#plv_g531ebf57ee866d3995abc290ec0987e_g',
           'width':'100%',
