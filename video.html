@@ -2,33 +2,59 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>视频播放2</title>
+  <title>视频播放5</title>
   <style>
-    body { background: #f4f4f4; text-align: center; padding: 40px; font-family: "Segoe UI", sans-serif; }
-    #main { background: #fff; display: inline-block; padding: 30px 50px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    #msg { color: red; margin-bottom: 20px; }
-    .video-container {
-      max-width: 900px;
+    body {
+      background: #f4f4f4;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px 32px 24px 32px;
+      max-width: 960px;
       width: 100%;
       margin: 0 auto;
-      position: relative;
-      /* 16:9比例，确保高度撑开 */
-      padding-top: 56.25%;
+      text-align: center;
+    }
+    .video-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 24px auto 0 auto;
+      aspect-ratio: 16/9;
       background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
     }
     .plv-player-wrap {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      min-width: 300px;
-      min-height: 200px;
+    }
+    #msg {
+      color: red;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 1000px) {
+      .card { max-width: 100vw; padding: 12px 0 12px 0; }
+      .video-container { max-width: 100vw; border-radius: 0; }
+    }
+    @media (max-width: 600px) {
+      .video-container { aspect-ratio: 16/9; }
+      .card { padding: 6px 0 6px 0; }
     }
   </style>
 </head>
 <body>
-  <div id="main">
+  <div class="card">
     <div id="msg"></div>
     <div id="video-area" style="display:none;">
-      <h2>视频内容</h2>
+      <h2 style="margin-bottom:16px;">视频内容</h2>
       <div class="video-container">
         <div id="plv_g531ebf57e9887dc958f0135f0bab1e9_g" class="plv-player-wrap"></div>
       </div>
