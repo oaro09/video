@@ -2,8 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>自适应视频尺寸示例</title>
-  <link href="https://vjs.zencdn.net/7.21.1/video-js.css" rel="stylesheet" />
+  <title>保利威自适应视频尺寸示例</title>
   <style>
     body {
       background: #f4f4f4;
@@ -12,49 +11,33 @@
       font-family: "Segoe UI", sans-serif;
     }
     .video-container {
+      max-width: 900px;
       margin: auto;
+      position: relative;
+      padding-top: 56.25%; /* 16:9比例 */
+    }
+    .plv-player-wrap {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
     }
   </style>
 </head>
 <body>
-  <h2>自适应视频尺寸播放</h2>
-  <div class="video-container" id="video-container">
-    <video
-      id="my-video"
-      class="video-js vjs-default-skin"
-      controls
-      preload="auto"
-      data-setup='{}'
-      controlsList="nodownload"
-      oncontextmenu="return false;"
-    >
-      <source src="https://share.plvideo.cn/front/video/view?vid=g531ebf57e9887dc958f0135f0bab1e9_g" />
-      您的浏览器不支持视频播放。
-    </video>
+  <h2>保利威自适应视频尺寸播放</h2>
+  <div class="video-container">
+    <div id="plv_g531ebf57e9887dc958f0135f0bab1e9_g" class="plv-player-wrap"></div>
   </div>
 
-  <script src="https://vjs.zencdn.net/7.21.1/video.min.js"></script>
+  <!-- 保利威播放器脚本，推荐 https 协议 -->
+  <script src="https://player.polyv.net/resp/vod-player/latest/player.js"></script>
   <script>
-    var player = videojs('my-video');
-
-    player.ready(function() {
-      // 监听元数据加载完成，获得视频原始宽高
-      player.tech(true).on('loadedmetadata', function() {
-        var videoWidth = player.videoWidth();
-        var videoHeight = player.videoHeight();
-
-        // 限制最大宽度，避免太大
-        var maxWidth = 900;
-
-        var scale = Math.min(maxWidth / videoWidth, 1);
-
-        var newWidth = videoWidth * scale;
-        var newHeight = videoHeight * scale;
-
-        // 设置播放器尺寸
-        player.width(newWidth);
-        player.height(newHeight);
-      });
+    // 让播放器自适应父容器
+    polyvPlayer({
+      'wrap': '#plv_g531ebf57e9887dc958f0135f0bab1e9_g',
+      'width': '100%',
+      'height': '100%',
+      'vid': 'g531ebf57e9887dc958f0135f0bab1e9_g',
+      'playsafe': '' // 如有加密需求填写凭证
     });
   </script>
 </body>
