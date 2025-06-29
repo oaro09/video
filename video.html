@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>视频播放</title>
+  <title>视频播放2</title>
   <style>
     body { background: #f4f4f4; text-align: center; padding: 40px; font-family: "Segoe UI", sans-serif; }
     #main { background: #fff; display: inline-block; padding: 30px 50px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
@@ -12,11 +12,15 @@
       width: 100%;
       margin: 0 auto;
       position: relative;
-      padding-top: 56.25%; /* 16:9 比例 */
+      /* 16:9比例，确保高度撑开 */
+      padding-top: 56.25%;
+      background: #000;
     }
     .plv-player-wrap {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
+      min-width: 300px;
+      min-height: 200px;
     }
   </style>
 </head>
