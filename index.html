@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>请输入访问密码9</title>
+  <title>唠唠嗑</title>
   <style>
     body { background: #f4f4f4; text-align: center; padding: 40px; font-family: "Segoe UI", sans-serif; }
     #main { background: #fff; display: inline-block; padding: 30px 50px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
@@ -13,18 +13,19 @@
 </head>
 <body>
   <div id="main">
-    <h2>请输入访问密码</h2>
+    <h2>请输入专属密码</h2>
     <input type="password" id="password" placeholder="请输入密码" autocomplete="off" />
     <br>
     <button onclick="login()">进入</button>
     <div id="msg"></div>
   </div>
   <script>
-    // 15个不同的密码（可自定义）
+    
     const PASSWORD_LIST = [
-      "1234", "4567", "h789", "0123", "2345",
-      "pq678", "st901", "vw234", "yz567", "BC890",
-      "EFG123", "HIJ456", "KLM789", "NOP012", "QRS345"
+      "apple", "banana", "mango", "orange", "grape",
+      "pineapple", "strawberry", "blueberry", "raspberry", "cherry",
+      "watermelon", "peach", "plum", "kiwi", "papaya"
+      "lychee", "pomegranate", "coconut", "lemon", "jiangwenji"
     ];
 
     function login() {
@@ -34,16 +35,16 @@
         return;
       }
       if (PASSWORD_LIST.includes(input)) {
-        // 检查是否已用过
+        // 
         if (localStorage.getItem('video_pwd_used_' + input) === '1') {
           document.getElementById('msg').innerText = '该密码已被使用，请勿重复使用！';
         } else {
-          // 生成一次性 token
+          // 
           const token = Date.now() + '_' + Math.random().toString(36).substr(2, 8);
-          // 标记密码和token都为未用
+          // 
           localStorage.setItem('video_pwd_used_' + input, '0');
           localStorage.setItem('video_token_used_' + token, '0');
-          // 跳转并带 token 和密码
+          // 
           window.location.href = 'video.html?token=' + encodeURIComponent(token) + '&pwd=' + encodeURIComponent(input);
         }
       } else {
