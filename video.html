@@ -33,10 +33,8 @@
     } else {
       const usedToken = localStorage.getItem('video_token_used_' + token);
       const usedPwd = localStorage.getItem('video_pwd_used_' + pwd);
-      if (usedToken === null) {
-        msgDiv.innerText = '链接已失效或非法访问（token无效）';
-      } else if (usedPwd === null) {
-        msgDiv.innerText = '链接已失效或非法访问（密码无效）';
+      if (usedToken === null || usedPwd === null) {
+        msgDiv.innerText = '链接已失效或非法访问';
       } else if (usedToken === '1' || usedPwd === '1') {
         msgDiv.innerText = '本链接或密码已访问过，不能重复访问';
       } else {
