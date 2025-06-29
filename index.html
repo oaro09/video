@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>请输入访问密码</title>
+  <title>请输入访问密码1</title>
   <style>
     body { background: #f4f4f4; text-align: center; padding: 40px; font-family: "Segoe UI", sans-serif; }
     #main { background: #fff; display: inline-block; padding: 30px 50px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
@@ -20,7 +20,7 @@
     <div id="msg"></div>
   </div>
   <script>
-    // 15个不同的密码（你可以自定义）
+    // 15个不同的密码（可自定义）
     const PASSWORD_LIST = [
       "abc123", "def456", "ghi789", "jkl012", "mno345",
       "pqr678", "stu901", "vwx234", "yzA567", "BCD890",
@@ -38,10 +38,10 @@
         if (localStorage.getItem('video_pwd_used_' + input) === '1') {
           document.getElementById('msg').innerText = '该密码已被使用，请勿重复使用！';
         } else {
-          // 标记为未用
-          localStorage.setItem('video_pwd_used_' + input, '0');
           // 生成一次性 token
           const token = Date.now() + '_' + Math.random().toString(36).substr(2, 8);
+          // 标记密码和token都为未用
+          localStorage.setItem('video_pwd_used_' + input, '0');
           localStorage.setItem('video_token_used_' + token, '0');
           // 跳转并带 token 和密码
           window.location.href = 'video.html?token=' + encodeURIComponent(token) + '&pwd=' + encodeURIComponent(input);
