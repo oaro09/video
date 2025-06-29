@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>视频播放</title>
+</head>
+<body>
+  <div id="msg" style="color:red;"></div>
+  <div id="video-area" style="display:none;">
+    <!-- 这里放你的播放器代码 -->
+    <h2>视频内容</h2>
+    <div id="plv_g531ebf57e9887dc958f0135f0bab1e9_g"></div>
+    <script src="https://player.polyv.net/resp/vod-player/latest/player.js"></script>
+    <script>
+      polyvPlayer({
+        'wrap':'#plv_g531ebf57e9887dc958f0135f0bab1e9_g',
+        'width':'100%',
+        'height':'500',
+        'vid': 'g531ebf57e9887dc958f0135f0bab1e9_g',
+        'playsafe': ''
+      });
+    </script>
+  </div>
+  <script>
+    // 获取 token 和密码
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    const pwd = params.get('pwd');
+    if (!token || !pwd) {
+      document.getElementById('msg').innerText = '非法访问，请从首页进入';
+    } else {
+      const usedToken = localStorage.getItem('video_token_used_' + token);
+      const usedPwd = localStorage.getItem('video_pwd_used_' + pwd);
+      if (usedToken === null || usedPwd === null) {
+        document.getElementById('msg').innerText = '链接已失效或非法访问';
+      } else if (usedToken === '1' || usedPwd === '1') {
+        document.getElementById('msg').innerText = '本链接或密码已访问过，不能重复访问';
+      } else {
+        // 标记为已访问
+        localStorage.setItem('video_token_used_' + token, '1');
+        localStorage.setItem('video_pwd_used_' + pwd, '1');
+        document.getElementById('video-area').style.display = '';
+      }
+    }
+  </script>
+</body>
+</html>
